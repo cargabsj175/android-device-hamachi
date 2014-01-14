@@ -10,6 +10,13 @@ $(call inherit-product-if-exists, vendor/qcom/hamachi/hamachi-vendor-blobs.mk)
 $(call inherit-product-if-exists, vendor/qcom/common/vendor-blobs.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full.mk)
 
+LOCAL_PATH := device/qcom/hamachi
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
+else
+	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
+
 PRODUCT_PROPERTY_OVERRIDES += \
   rild.libpath=/system/lib/libril-qc-1.so \
   rild.libargs=-d/dev/smd0 \
