@@ -1,5 +1,14 @@
 $(call inherit-product, device/qcom/common/common.mk)
+
+LOCAL_PATH := device/qcom/hamachi
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
+else
+	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
+
 PRODUCT_COPY_FILES := \
+  $(LOCAL_KERNEL):kernel \
   device/qcom/hamachi/touch.idc:system/usr/idc/msg2133.idc \
   device/qcom/hamachi/touch.idc:system/usr/idc/ft5x06_ts.idc \
   device/qcom/hamachi/media_profiles.xml:system/etc/media_profiles.xml \
@@ -9,13 +18,6 @@ PRODUCT_COPY_FILES := \
 $(call inherit-product-if-exists, vendor/qcom/hamachi/hamachi-vendor-blobs.mk)
 $(call inherit-product-if-exists, vendor/qcom/common/vendor-blobs.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full.mk)
-
-LOCAL_PATH := device/qcom/hamachi
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
-else
-	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
   rild.libpath=/system/lib/libril-qc-1.so \
