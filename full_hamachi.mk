@@ -1,5 +1,4 @@
 $(call inherit-product, device/qcom/common/common.mk)
-
 PRODUCT_COPY_FILES := \
   device/qcom/hamachi/touch.idc:system/usr/idc/msg2133.idc \
   device/qcom/hamachi/touch.idc:system/usr/idc/ft5x06_ts.idc \

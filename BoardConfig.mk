@@ -1,4 +1,5 @@
 include device/qcom/msm7627a/BoardConfig.mk
+TARGET_USES_MDP3 := true
 
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_KERNEL := true
@@ -6,7 +7,7 @@ BOARD_KERNEL_PAGESIZE = 2048
 BOARD_KERNEL_SPARESIZE = 64
 
 ifneq (,$(wildcard vendor/qcom/hamachi/kernel))
-TARGET_PREBUILT_KERNEL := device/qcom/hamachi/prebuilt/kernel
+TARGET_PREBUILT_KERNEL := vendor/qcom/hamachi/kernel
 BOARD_KERNEL_BASE := 200000
 TARGET_NO_KERNEL := false
 BOARD_KERNEL_CMDLINE := androidboot.hardware=hamachi
